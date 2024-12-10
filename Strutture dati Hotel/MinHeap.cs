@@ -58,6 +58,13 @@ namespace Strutture_dati_Hotel
             }
 
             HeapSort();
+            /*
+             * Aggiunge in fondo
+             * Parte da lì
+             * Fa diviso due, +0 o +1
+             * se trova un maggiore scambia
+             * e procede
+             */
         }
 
         public void Inserisci(string nomeCliente, DateTime dataArrivo)
@@ -101,6 +108,11 @@ namespace Strutture_dati_Hotel
 
                 Heapify(Smallest);
             }
+        }
+
+        private void Hepify2(int i)
+        {
+            //int Smallest = int.Parse(Math.Floor(decimal.Parse(i) / 2));
         }
 
         void HeapSort()

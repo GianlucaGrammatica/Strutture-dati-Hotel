@@ -16,6 +16,7 @@ namespace Strutture_dati_Hotel
                 Estrarre e stampare le prenotazioni in ordine di data utilizzando EstraiMinimo() fino a svuotare il Min Heap.
             */
 
+
             Random Random = new Random();
             MinHeap ListaPrenotazioni = new MinHeap();
 
