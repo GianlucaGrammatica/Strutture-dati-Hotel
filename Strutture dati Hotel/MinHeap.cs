@@ -14,7 +14,6 @@ namespace Strutture_dati_Hotel
 
         public MinHeap()
         {
-            Base[0] = DateTime.Now;
             Count = 0;
         }
 
@@ -45,35 +44,57 @@ namespace Strutture_dati_Hotel
             {
                 Base[Count] = toAdd;
             }
+
+            HeapSort();
         }
 
 
         // Ordinamento
-        private void Sort()
+        private void Heapify(int i)
+        {
+
+            int Smallest = i;
+            int Left = i * 2;
+            int Rigth = i * 2 + 1;
+
+
+            if (Left < Count && Base[Left] < Base[Smallest])
+            {
+                Smallest = Left;
+            }
+
+            if (Rigth < Count && Base[Rigth] < Base[Smallest])
+            {
+                Smallest = Rigth;
+            }
+
+
+            if (Smallest != i)
+            {
+                DateTime temp = Base[i];
+                Base[i] = Base[Smallest];
+                Base[Smallest] = temp;
+
+                Heapify(Smallest);
+            }
+        }
+
+        void HeapSort()
         {
             for (int i = Count / 2; i >= 1; i--)
             {
-                int Samllest = i;
-                int Left = 2 * i;
-                int Rigth = 2 * i + 1;
-
-                if (Left <= Count && Base[Left] < Base[Samllest])
-                {
-                    Samllest = Left;
-                }
-
-                if (Rigth <= Count && Base[Rigth] < Base[Samllest])
-                {
-                    Samllest = Rigth;
-                }
+                Heapify(i);
+            }
 
 
-                if (Samllest != i)
-                {
-                    DateTime temp = Base[i];
-                    Base[i] = Base[Samllest];
-                    Base[Samllest] = temp;
-                }
+            for (int i = Count - 1; i >= 1; i--)
+            {
+
+                DateTime temp = Base[1];
+                Base[1] = Base[i];
+                Base[i] = temp;
+
+                Heapify(1);
             }
         }
 
@@ -89,7 +110,7 @@ namespace Strutture_dati_Hotel
             Base[1] = Base[Count];
             Count--;
 
-            Sort();
+            HeapSort();
             return min;
         }
 

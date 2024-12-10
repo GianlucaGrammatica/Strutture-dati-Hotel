@@ -15,7 +15,30 @@ namespace Strutture_dati_Hotel
             - Fornire un metodo ToString() per stampare i dati della prenotazione in formato leggibile.
         */
 
-        string NomeCliente;
-        DateTime DataArrivo;
+        public string NomeCliente;
+        public DateTime DataArrivo;
+
+        public Prenotazione() 
+        {
+            
+            NomeCliente = "";
+            DataArrivo = DateTime.Now;
+
+        }
+
+        public Prenotazione(string nomeCliente, DateTime dataArrivo) 
+        {            
+            NomeCliente = nomeCliente;
+            DataArrivo = dataArrivo;
+        }
+
+        public override string ToString()
+        {
+            string toReturn = "";
+
+            toReturn = $"{NomeCliente} - {DataArrivo}";
+
+            return toReturn;
+        }
     }
 }
