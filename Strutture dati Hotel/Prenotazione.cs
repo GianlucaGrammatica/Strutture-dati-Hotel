@@ -34,9 +34,7 @@ namespace Strutture_dati_Hotel
 
         public override string ToString()
         {
-            string toReturn = "";
-
-            toReturn = $"{NomeCliente} - {DataArrivo}";
+            string toReturn = $"{NomeCliente} - {DataArrivo}";
 
             return toReturn;
         }

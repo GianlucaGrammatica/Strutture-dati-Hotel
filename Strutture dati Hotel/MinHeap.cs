@@ -8,7 +8,19 @@ namespace Strutture_dati_Hotel
 {
     internal class MinHeap
     {
-        private DateTime[] Base = new DateTime[4];
+
+        /*
+            Classe MinHeap
+
+            Deve essere implementata una struttura dati Min Heap che rispetti le seguenti funzionalità:
+
+                - Inserisci(Prenotazione p): aggiunge una nuova prenotazione nel heap.
+                - EstraiMinimo(): rimuove e restituisce la prenotazione con la data di arrivo più vicina.
+                - VisualizzaMinimo(): mostra la prenotazione con la data di arrivo più vicina senza rimuoverla.
+                - StampaHeap(): stampa tutte le prenotazioni nell'ordine del Min Heap.
+        */
+
+        private Prenotazione[] Base = new Prenotazione[4];
         private int Count = 0;
         private int Capacity = 4;
 
@@ -21,7 +33,7 @@ namespace Strutture_dati_Hotel
         private void IncArray()
         {
             Capacity = Capacity * 2;
-            DateTime[] newBase = new DateTime[Capacity];
+            Prenotazione[] newBase = new Prenotazione[Capacity];
             Base.CopyTo(newBase, 0);
             Base = newBase;
             return;
@@ -37,7 +49,7 @@ namespace Strutture_dati_Hotel
         }
 
         // Manipolazione Heap
-        public void Add(DateTime toAdd)
+        public void Inserisci(Prenotazione toAdd)
         {
             Count++;
             if (CheckCapacity(Count))
@@ -58,12 +70,12 @@ namespace Strutture_dati_Hotel
             int Rigth = i * 2 + 1;
 
 
-            if (Left < Count && Base[Left] < Base[Smallest])
+            if (Left < Count && Base[Left].DataArrivo < Base[Smallest].DataArrivo)
             {
                 Smallest = Left;
             }
 
-            if (Rigth < Count && Base[Rigth] < Base[Smallest])
+            if (Rigth < Count && Base[Rigth].DataArrivo < Base[Smallest].DataArrivo)
             {
                 Smallest = Rigth;
             }
@@ -71,7 +83,7 @@ namespace Strutture_dati_Hotel
 
             if (Smallest != i)
             {
-                DateTime temp = Base[i];
+                Prenotazione temp = Base[i];
                 Base[i] = Base[Smallest];
                 Base[Smallest] = temp;
 
@@ -90,7 +102,7 @@ namespace Strutture_dati_Hotel
             for (int i = Count - 1; i >= 1; i--)
             {
 
-                DateTime temp = Base[1];
+                Prenotazione temp = Base[1];
                 Base[1] = Base[i];
                 Base[i] = temp;
 
@@ -99,14 +111,14 @@ namespace Strutture_dati_Hotel
         }
 
         // Accesso Heap
-        public DateTime GetMin()
+        public Prenotazione EstraiMinimo()
         {
             if (Count == 0)
             {
                 throw new InvalidOperationException("Heap is empty");
             }
 
-            DateTime min = Base[1];
+            Prenotazione min = Base[1];
             Base[1] = Base[Count];
             Count--;
 
@@ -114,9 +126,21 @@ namespace Strutture_dati_Hotel
             return min;
         }
 
-        public override string ToString()
+        public Prenotazione VisualizzaMinimo()
         {
-            string toReturn = "";
+            if (Count == 0)
+            {
+                throw new InvalidOperationException("Heap is empty");
+            }
+
+            Prenotazione min = Base[1];
+
+            return min;
+        }
+
+        public string StampaHeap()
+        {
+            string toReturn = "-- Prenotazioni --\n\n";
 
             if (Count <= 0)
             {
@@ -125,7 +149,7 @@ namespace Strutture_dati_Hotel
 
             for (int i = 1; i < Count + 1; i++)
             {
-                toReturn += Base[i].ToString() + "\t";
+                toReturn += Base[i].ToString() + "\n";
             }
 
             return toReturn;
