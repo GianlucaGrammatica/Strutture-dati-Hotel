@@ -60,6 +60,18 @@ namespace Strutture_dati_Hotel
             HeapSort();
         }
 
+        public void Inserisci(string nomeCliente, DateTime dataArrivo)
+        {
+            Count++;
+            if (CheckCapacity(Count))
+            {
+                Prenotazione newPrenotazione = new Prenotazione(nomeCliente, dataArrivo);
+                Base[Count] = newPrenotazione;
+            }
+
+            HeapSort();
+        }
+
 
         // Ordinamento
         private void Heapify(int i)
@@ -97,7 +109,6 @@ namespace Strutture_dati_Hotel
             {
                 Heapify(i);
             }
-
 
             for (int i = Count - 1; i >= 1; i--)
             {
