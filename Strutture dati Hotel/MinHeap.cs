@@ -102,34 +102,29 @@ namespace Strutture_dati_Hotel
 
             if (Smallest != i)
             {
-                Prenotazione temp = Base[i];
-                Base[i] = Base[Smallest];
-                Base[Smallest] = temp;
-
+                Swap(i, Smallest);
                 Heapify(Smallest);
             }
         }
 
-        private void Hepify2(int i)
+        private void Swap(int i , int j)
         {
-            //int Smallest = int.Parse(Math.Floor(decimal.Parse(i) / 2));
+            Prenotazione temp = Base[i];
+            Base[i] = Base[j];
+            Base[j] = temp;
         }
+
+
 
         void HeapSort()
         {
-            for (int i = Count / 2; i >= 1; i--)
+            int current = Count;
+
+            // Posizionamento corretto nell'heap
+            while (current > 1 && Base[current].DataArrivo < Base[current / 2].DataArrivo)
             {
-                Heapify(i);
-            }
-
-            for (int i = Count - 1; i >= 1; i--)
-            {
-
-                Prenotazione temp = Base[1];
-                Base[1] = Base[i];
-                Base[i] = temp;
-
-                Heapify(1);
+                Swap(current, current / 2);
+                current /= 2;
             }
         }
 

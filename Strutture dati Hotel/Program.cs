@@ -27,6 +27,10 @@ namespace Strutture_dati_Hotel
 
             Console.WriteLine(ListaPrenotazioni.StampaHeap());
 
+            Console.WriteLine($"\nPrenotazione più vicina: {ListaPrenotazioni.VisualizzaMinimo()}");
+
+            Console.WriteLine($"\nMinimo estratto: {ListaPrenotazioni.EstraiMinimo()}");
+
             Console.ReadKey();  
         }        
     }
